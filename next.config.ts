@@ -8,6 +8,8 @@ jiti.import('./env/server.ts');
 jiti.import('./env/client.ts');
 
 const nextConfig: NextConfig = {
+  // Dockerfile copies .next/standalone, but upstream config doesn't enable it.
+  output: 'standalone',
   typescript: {
     // Upstream lib/tools/build-tools.ts:713 passes an Exa search category
     // ("tweet") not present in the installed exa-js types. Type-only
