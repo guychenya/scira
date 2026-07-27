@@ -219,6 +219,7 @@
       "@parcel/watcher",
       "@tailwindcss/oxide",
       "@vercel/speed-insights",
+      "canvas",
       "core-js",
       "esbuild",
       "sharp",
