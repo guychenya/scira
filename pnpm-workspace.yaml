@@ -1,0 +1,10 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - '@vercel/speed-insights'
+  - canvas
+  - core-js
+  - esbuild
+  - sharp
+  - sqlite3
+  - unrs-resolver

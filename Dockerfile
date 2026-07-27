@@ -14,7 +14,7 @@ WORKDIR /app
 
 # Copy package files and install dependencies using pnpm
 # pnpm is used for faster and more efficient package management
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
 RUN corepack enable pnpm && pnpm i;
 
 # Stage 2: Building the application
