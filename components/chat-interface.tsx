@@ -164,7 +164,7 @@ const ChatInterface = memo(
       queueMicrotask(() => measureHeaderMenuAlignment());
     }, [pathname, localChatTitle, headerMenuOpen, measureHeaderMenuAlignment]);
 
-    const [selectedModel, setSelectedModel] = useLocalStorage('scira-selected-model', 'scira-default');
+    const [selectedModel, setSelectedModel] = useLocalStorage('scira-selected-model', 'scira-anthropic');
     const initialGroupDefault = (
       groupParam ? (groupParam as unknown as SearchGroupId) : ('web' as SearchGroupId)
     ) as SearchGroupId;
@@ -501,7 +501,7 @@ const ChatInterface = memo(
     // Pro users bypass all limit checks - much cleaner!
     const effectiveSelectedModel = useMemo(() => {
       if (proStatusLoading) return selectedModel;
-      if (requiresProSubscription(selectedModel) && !isUserPro) return 'scira-default';
+      if (requiresProSubscription(selectedModel) && !isUserPro) return 'scira-anthropic';
       return selectedModel;
     }, [selectedModel, isUserPro, proStatusLoading]);
     const shouldBypassLimits = shouldBypassLimitsForModel(effectiveSelectedModel);
