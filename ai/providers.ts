@@ -74,6 +74,12 @@ const minimax = createOpenAICompatible({
   apiKey: process.env.MINIMAX_API_KEY,
 });
 
+const ollama = createOpenAICompatible({
+  name: 'ollama',
+  baseURL: process.env.OLLAMA_BASE_URL || 'http://192.168.1.183:11434/v1',
+  apiKey: process.env.OLLAMA_API_KEY || 'ollama',
+});
+
 const wsFetch = createWebSocketFetch();
 const openai = createOpenAI({
   fetch: wsFetch,
@@ -87,6 +93,16 @@ const openai_2 = createOpenAI({
 export const scira = customProvider({
   languageModels: {
     'scira-arch-router': huggingface.chatModel('katanemo/Arch-Router-1.5B:hf-inference'),
+    'scira-ollama-qwen3-coder': ollama.chatModel('qwen3-coder:latest'),
+    'scira-ollama-qwen3-1.7b': ollama.chatModel('qwen3:1.7b'),
+    'scira-ollama-glm-4.7-flash': ollama.chatModel('glm-4.7-flash:latest'),
+    'scira-ollama-dictalm-12b': ollama.chatModel('dictalm:12b'),
+    'scira-ollama-aya-expanse-32b': ollama.chatModel('aya-expanse:32b'),
+    'scira-ollama-aya-expanse-8b': ollama.chatModel('aya-expanse:8b'),
+    'scira-ollama-qwen2.5vl-7b': ollama.chatModel('qwen2.5vl:7b'),
+    'scira-ollama-devstral-small-2': ollama.chatModel('devstral-small-2:24b'),
+    'scira-ollama-llama3.3': ollama.chatModel('llama3.3:latest'),
+    'scira-ollama-qwen3.6-27b': ollama.chatModel('qwen3.6:27b'),
     'scira-default': xai('grok-4-1-fast-non-reasoning'),
     'scira-auto': xai('grok-4-1-fast-non-reasoning'),
     'scira-sarvam-105b': sarvam.chatModel('sarvam-105b'),
