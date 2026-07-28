@@ -9,7 +9,7 @@ import { groq } from '@ai-sdk/groq';
 import { mistral } from '@ai-sdk/mistral';
 import { google } from '@ai-sdk/google';
 import { baseten } from '@ai-sdk/baseten';
-import { anthropic } from '@ai-sdk/anthropic';
+import { anthropic, createAnthropic } from '@ai-sdk/anthropic';
 import { cohere } from '@ai-sdk/cohere';
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { createRetryable } from 'ai-retry';
@@ -76,8 +76,13 @@ const minimax = createOpenAICompatible({
 
 const ollama = createOpenAICompatible({
   name: 'ollama',
-  baseURL: process.env.OLLAMA_BASE_URL || 'http://192.168.1.183:11434/v1',
+  baseURL: process.env.OLLAMA_BASE_URL || 'http://192.168.2.10:11434/v1',
   apiKey: process.env.OLLAMA_API_KEY || 'ollama',
+});
+
+const claudeCli = createAnthropic({
+  baseURL: process.env.ANTHROPIC_BASE_URL || 'http://192.168.1.178:8181',
+  apiKey: process.env.ANTHROPIC_AUTH_TOKEN || process.env.ANTHROPIC_API_KEY || 'unused',
 });
 
 const wsFetch = createWebSocketFetch();
@@ -103,6 +108,7 @@ export const scira = customProvider({
     'scira-ollama-devstral-small-2': ollama.chatModel('devstral-small-2:24b'),
     'scira-ollama-llama3.3': ollama.chatModel('llama3.3:latest'),
     'scira-ollama-qwen3.6-27b': ollama.chatModel('qwen3.6:27b'),
+    'scira-claude-cli': claudeCli('claude-sonnet-4-5'),
     'scira-default': xai('grok-4-1-fast-non-reasoning'),
     'scira-auto': xai('grok-4-1-fast-non-reasoning'),
     'scira-sarvam-105b': sarvam.chatModel('sarvam-105b'),

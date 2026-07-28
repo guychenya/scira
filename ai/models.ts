@@ -267,6 +267,22 @@ export const models: Model[] = [
     isNew: true,
     provider: 'ollama',
   },
+  {
+    value: 'scira-claude-cli',
+    label: 'Claude Sonnet 4.5 (Local Proxy)',
+    description: 'Claude Sonnet 4.5 routed through the local Claude CLI proxy — no cloud API key',
+    vision: true,
+    reasoning: false,
+    experimental: false,
+    category: 'Free',
+    pdf: true,
+    pro: false,
+    requiresAuth: false,
+    freeUnlimited: true,
+    maxOutputTokens: 8000,
+    isNew: true,
+    provider: 'anthropic',
+  },
   // Models (xAI)
   {
     value: 'scira-grok-3-mini',
