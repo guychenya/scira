@@ -76,8 +76,14 @@ const minimax = createOpenAICompatible({
 
 const ollama = createOpenAICompatible({
   name: 'ollama',
-  baseURL: process.env.OLLAMA_BASE_URL || 'http://192.168.2.10:11434/v1',
+  baseURL: process.env.OLLAMA_BASE_URL || 'http://192.168.1.183:11434/v1',
   apiKey: process.env.OLLAMA_API_KEY || 'ollama',
+});
+
+const ollamaLocal = createOpenAICompatible({
+  name: 'ollama-local',
+  baseURL: process.env.OLLAMA_LOCAL_BASE_URL || 'http://192.168.1.178:11434/v1',
+  apiKey: process.env.OLLAMA_LOCAL_API_KEY || 'ollama',
 });
 
 const claudeCli = createAnthropic({
@@ -108,6 +114,7 @@ export const scira = customProvider({
     'scira-ollama-devstral-small-2': ollama.chatModel('devstral-small-2:24b'),
     'scira-ollama-llama3.3': ollama.chatModel('llama3.3:latest'),
     'scira-ollama-qwen3.6-27b': ollama.chatModel('qwen3.6:27b'),
+    'scira-ollama-llama3.2-3b': ollamaLocal.chatModel('llama3.2:3b'),
     'scira-claude-cli': claudeCli('claude-sonnet-4-5'),
     'scira-default': xai('grok-4-1-fast-non-reasoning'),
     'scira-auto': xai('grok-4-1-fast-non-reasoning'),
